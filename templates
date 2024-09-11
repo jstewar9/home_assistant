@@ -1,0 +1,5 @@
+# Return timestamp for Halloween in the current year
+{%- set y = now().year | string -%}
+{%- set d = '-10-31' -%}
+{{as_timestamp(y + d)}}
+{{as_timestamp(states('sensor.date'))}}
