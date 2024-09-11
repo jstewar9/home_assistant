@@ -1,5 +1,17 @@
-# Return timestamp for Halloween in the current year
-{%- set y = now().year | string -%}
+{# Use Time/Date integration to create sensor.date to store current date string #}
+
+{# sensor.current_year #}
+{# extract year from sensor.date #}
+{{states('sensor.date')[:4]}}
+
+{# sensor.halloween_time_stamp #}
+{# calculate unix timestamp for Halloween in the current year #}
+{%- set y = states('sensor.current_year') -%}
 {%- set d = '-10-31' -%}
 {{as_timestamp(y + d)}}
-{{as_timestamp(states('sensor.date'))}}
+
+{# binary_sensor.halloween_lights_trigger #}
+{# true if current date is within 14 days of Halloween  #}
+{%- set dts = as_timestamp(states('sensor.date')) -%}
+{%- set h =  states('sensor.halloween_time_stamp') | int -%}
+{{(-14) <= ((dts - h) / 86400) <= (0)}}
