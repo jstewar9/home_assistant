@@ -16,6 +16,17 @@
 {%- set h =  states('sensor.halloween_time_stamp') | int -%}
 {{(-14) <= ((dts - h) / 86400) <= (0)}}
 
+{# determine which preset search term to use #}
+{% if states('binary_sensor.49er_lights_trigger') == true %}
+49er
+{% elif states('binary_sensor.auburn_lights_trigger') == true %}
+Auburn
+{% elif states('binary_sensor.halloween_lights_trigger') == true %}
+Halloween
+{% else %}
+NULL
+{% endif %}
+
 {# select random WLED preset  #}
 {% set p = state_attr('select.wled_preset','options') %}
 {{p}}
