@@ -15,3 +15,9 @@
 {%- set dts = as_timestamp(states('sensor.date')) -%}
 {%- set h =  states('sensor.halloween_time_stamp') | int -%}
 {{(-14) <= ((dts - h) / 86400) <= (0)}}
+
+{# select random WLED preset  #}
+{% set p = state_attr('select.wled_preset','options') %}
+{{p}}
+{% set h = p | select("search", "Christmas") | list %}
+{{h | random}}
