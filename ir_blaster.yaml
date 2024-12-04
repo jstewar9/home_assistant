@@ -5,3 +5,19 @@
 
 // candle_on = BT8jjBFEAuAXAQF+BuAZA+AXAeATQwlgmz8jywhEAv//4AIHAghEAg==
 // candle_off = BVYjjhFDAuAXAQGBBuAVA+AXAeAXPwlYm1YjvQhDAv//4AIHAghDAg==
+
+alias: Living Room Fireplace
+sequence:
+  - service: zha.issue_zigbee_cluster_command
+    data:
+      cluster_type: in
+      endpoint_id: 1
+      command: 2
+      ieee: f8:44:77:ff:fe:2b:fd:14
+      command_type: server
+      params:
+        code: ClEjdhE+Aj4CXwI+YAHAB+AFAQF/BuAVA8ABQCcBPgLgAUMCfwZfIANAB4ADQAHAC0AHwAEJ3JpRI7EIPgL//+ACBwIIPgI=
+      cluster_id: 57348
+mode: single
+icon: mdi:fireplace
+
